@@ -1,0 +1,51 @@
+@baseUrl = http://localhost:3000
+
+### ========== PUBLIC ==========
+
+### List cars (PUBLIC)
+GET {{baseUrl}}/api/car/public
+
+###
+
+### Get car by ID (PUBLIC)
+GET {{baseUrl}}/api/car/public/1
+
+###
+
+### Create car (PUBLIC)
+POST {{baseUrl}}/api/car/public
+Content-Type: application/json
+
+{
+  "brand": "Toyota",
+  "class": "SUV",
+  "model": "Fortuner",
+  "cylinderCapacity": 2800,
+  "capacity": 7,
+  "status": "ACTIVE"
+}
+
+###
+
+### Update car (PUBLIC)
+PATCH {{baseUrl}}/api/car/public/1
+Content-Type: application/json
+
+{
+  "brand": "Mazda",
+  "class": "SPORT",
+  "model": "CX-5",
+  "cylinderCapacity": 2500,
+  "capacity": 5,
+  "status": "ACTIVE"
+}
+
+###
+
+### Hard delete car (PUBLIC)
+DELETE {{baseUrl}}/api/car/public/21
+
+###
+
+### Soft delete car (PUBLIC)
+DELETE {{baseUrl}}/api/car/public/1/logic

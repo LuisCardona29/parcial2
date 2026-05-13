@@ -12,7 +12,8 @@ export interface CarI {
   status: "ACTIVE" | "INACTIVE";
 }
 
-export class Car extends Model {
+export class Car extends Model implements CarI {
+
   public id!: number;
   public brand!: string;
   public class!: string;
@@ -20,15 +21,26 @@ export class Car extends Model {
   public cylinderCapacity!: number;
   public capacity!: number;
   public status!: "ACTIVE" | "INACTIVE";
+
 }
 
 Car.init(
   {
+
+    id: {
+      type: DataTypes.INTEGER,
+      autoIncrement: true,
+      primaryKey: true,
+      allowNull: false,
+    },
+
     brand: {
       type: DataTypes.STRING(100),
       allowNull: false,
       validate: {
-        notEmpty: { msg: "Brand cannot be empty" },
+        notEmpty: {
+          msg: "Brand cannot be empty",
+        },
         len: {
           args: [2, 100],
           msg: "Brand must contain between 2 and 100 characters",
@@ -40,7 +52,9 @@ Car.init(
       type: DataTypes.STRING(100),
       allowNull: false,
       validate: {
-        notEmpty: { msg: "Class cannot be empty" },
+        notEmpty: {
+          msg: "Class cannot be empty",
+        },
       },
     },
 
@@ -48,7 +62,9 @@ Car.init(
       type: DataTypes.STRING(100),
       allowNull: false,
       validate: {
-        notEmpty: { msg: "Model cannot be empty" },
+        notEmpty: {
+          msg: "Model cannot be empty",
+        },
       },
     },
 
@@ -56,7 +72,9 @@ Car.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
-        isInt: { msg: "Cylinder capacity must be an integer" },
+        isInt: {
+          msg: "Cylinder capacity must be an integer",
+        },
         min: {
           args: [50],
           msg: "Cylinder capacity must be greater than 50",
@@ -68,7 +86,9 @@ Car.init(
       type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
-        isInt: { msg: "Capacity must be an integer" },
+        isInt: {
+          msg: "Capacity must be an integer",
+        },
         min: {
           args: [1],
           msg: "Capacity must be greater than 0",
@@ -78,9 +98,10 @@ Car.init(
 
     status: {
       type: DataTypes.ENUM("ACTIVE", "INACTIVE"),
-      defaultValue: "ACTIVE",
       allowNull: false,
+      defaultValue: "ACTIVE",
     },
+
   },
   {
     sequelize,
@@ -89,6 +110,8 @@ Car.init(
     timestamps: false,
   }
 );
+
+/* RELATIONS */
 
 Car.hasMany(Tuition, {
   foreignKey: "car_id",

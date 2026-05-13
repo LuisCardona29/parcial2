@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { Tuition, TuitionI } from "../models/Tuition";
-import { Car } from "../models/car";
+import { Car } from "../models/Car";
 
 export class TuitionController {
 
