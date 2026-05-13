@@ -1,0 +1,49 @@
+@baseUrl = http://localhost:3000
+
+### ========== PUBLIC ==========
+
+### List tuitions (PUBLIC)
+GET {{baseUrl}}/api/tuition/public
+
+###
+
+### Get tuition by ID (PUBLIC)
+GET {{baseUrl}}/api/tuition/public/1
+
+###
+
+### Create tuition (PUBLIC)
+POST {{baseUrl}}/api/tuition/public
+Content-Type: application/json
+
+{
+  "registrationDate": "2025-01-15",
+  "city": "Bogota",
+  "payment": 850000,
+  "car_id": 1,
+  "status": "ACTIVE"
+}
+
+###
+
+### Update tuition (PUBLIC)
+PATCH {{baseUrl}}/api/tuition/public/1
+Content-Type: application/json
+
+{
+  "registrationDate": "2025-06-20",
+  "city": "Medellin",
+  "payment": 1200000,
+  "car_id": 2,
+  "status": "ACTIVE"
+}
+
+###
+
+### Hard delete tuition (PUBLIC)
+DELETE {{baseUrl}}/api/tuition/public/1
+
+###
+
+### Soft delete tuition (PUBLIC)
+DELETE {{baseUrl}}/api/tuition/public/1/logic
